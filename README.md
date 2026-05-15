@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CIHS · Intellectual Humility Self-Assessment
 
-## Getting Started
+A single-page web app that delivers the **Comprehensive Intellectual Humility Scale (CIHS)** — a 22-item self-report measure developed by Krumrei-Mancuso & Rouse — for team strategic-planning exercises.
 
-First, run the development server:
+- 22 statements rated on a 1–5 Likert scale
+- Automatic reverse scoring for items 1, 3, 5, 18, 19, 20, 21
+- Four subscale averages + overall CIHS score
+- Interpretation band (Very High → Rigid) with explanation
+- Copy-to-clipboard or print-to-PDF summary teammates can bring back to the group
+- Answers persist in the browser's `localStorage` — nothing is sent to a server
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The app is a single client-rendered page in `app/page.tsx` → `app/components/Assessment.tsx`.
+The scoring logic lives in `app/lib/cihs.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy to Vercel
 
-## Learn More
+The app is a standard Next.js App Router project with no server-side dependencies, so deployment is one command:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx vercel        # preview deployment
+npx vercel --prod # production deployment
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Or push the repo to GitHub and import it at [vercel.com/new](https://vercel.com/new). The default Next.js framework preset works as-is.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Once deployed, share the Vercel URL with your team. Each teammate fills out their own survey privately, then uses **Copy summary** or **Print / Save PDF** to bring their results to the planning conversation.
